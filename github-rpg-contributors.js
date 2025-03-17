@@ -99,24 +99,20 @@ export class GithubRpgContributors extends DDDSuper(I18NMixin(LitElement)) {
     this.contributors = data.slice(0, this.limit);
   }
 
-  generateRpgCharacter(name) {
-    return new RPGCharacter(name).generate();
-  }
-
   getRandom8DigitNumber() {
     return Math.floor(10000000 + Math.random() * 90000000);
   }
   
   render() {
     return html`
-      <h2>Contributors to <a href="https://github.com/${this.organization}/${this.repo}" target="_blank">${this.organization}/${this.repo}</a></h2>
+      <h2>Contributors to <a href="https://github.com/${this.organization}/${this.repo}">${this.organization}/${this.repo}</a></h2>
       <div class="contributors-list">
         ${this.contributors.map(
           (contributor) => {
-            const seednum = this.getRandom8DigitNumber(); // Generate a unique seed per contributor
+            const seednum = this.getRandom8DigitNumber();
             return html`
               <div class="contributor">
-                <a href="https://github.com/${contributor.login}" target="_blank">
+                <a href="https://github.com/${contributor.login}">
                   <img src="${contributor.avatar_url}" alt="${contributor.login}" class="avatar" />
                   <span>${contributor.login}</span>
                 </a>
